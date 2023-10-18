@@ -1,4 +1,4 @@
-%global gb_ver %(rpm -q --qf '%%{version}' gambas-devel)
+%global gb_ver %(rpm -q --qf '%%{version}' gambas3-devel)
 
 Summary:	Icon tray for dnfdrake and flatdrake
 Name:		draketray
@@ -10,24 +10,24 @@ URL:		https://mib.pianetalinux.org
 #URL:		https://github.com/astrgl/draketray
 Source0:	https://github.com/astrgl/draketray/archive/%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires:	gambas-devel
-BuildRequires:	gambas-gb.dbus
-BuildRequires:	gambas-gb.form
-BuildRequires:	gambas-gb.form.stock
-BuildRequires:	gambas-gb.gui
-BuildRequires:	gambas-gb.image
-BuildRequires:	gambas-gui-backend
+BuildRequires:	gambas3-devel
+BuildRequires:	gambas3-gb-dbus
+BuildRequires:	gambas3-gb-form
+BuildRequires:	gambas3-gb-form-stock
+BuildRequires:	gambas3-gb-gui
+BuildRequires:	gambas3-gb-image
+#BuildRequires:	gambas3-gui-backend
 
 Requires:	sudo
 Requires:	createrepo_c
 Requires:	dnf-utils
-Requires:	gambas-runtime = %{gb_ver}
-Requires:	gambas-gb.dbus = %{gb_ver}
-Requires:	gambas-gb.form = %{gb_ver}
-Requires:	gambas-gb.form.stock = %{gb_ver}
-Requires:	gambas-gb.gui = %{gb_ver}
-Requires:	gambas-gb.image = %{gb_ver}
-Requires:	gambas-gui-backend = %{gb_ver}
+Requires:	gambas3-runtime = %{gb_ver}
+Requires:	gambas3-gb-dbus = %{gb_ver}
+Requires:	gambas3-gb-form = %{gb_ver}
+Requires:	gambas3-gb-form-stock = %{gb_ver}
+Requires:	gambas3-gb-gui = %{gb_ver}
+Requires:	gambas3-gb-image = %{gb_ver}
+#Requires:	gambas3-gui-backend = %{gb_ver}
 Requires:	lsb-release
 Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
