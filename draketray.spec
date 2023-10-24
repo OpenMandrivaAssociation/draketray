@@ -1,8 +1,8 @@
 %global gb_ver %(rpm -q --qf '%%{version}' gambas-devel)
 
-Summary:	Icon tray for dnfdrake and flatdrake
+Summary:	Icon tray for DnfDrake and FlatDrake
 Name:		draketray
-Version:	3.0.3
+Version:	3.0.6
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
@@ -17,6 +17,7 @@ BuildRequires:	gambas-gb.form.stock
 BuildRequires:	gambas-gb.gui
 BuildRequires:	gambas-gb.image
 BuildRequires:	gambas-gui-backend
+BuildRequires:	imagemagick
 
 Requires:	sudo
 Requires:	createrepo_c
@@ -33,6 +34,7 @@ Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
 
 Suggests:	dnfdrake
+Suggests:	flatdrake
 
 BuildArch: noarch
 
@@ -45,7 +47,12 @@ Icon tray for dnfdrake.
 %files
 %license FILE-EXTRA/license
 %{_bindir}/%{name}.gambas
-%{_datadir}/%{name}/%{name}.desktop
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.xpm
+%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.svg
 
 #---------------------------------------------------------------------------
 
@@ -63,6 +70,24 @@ mv %{name}-%{version}.gambas %{name}.gambas
 # binary
 install -Dm 0755 %{name}.gambas -t %{buildroot}/%{_bindir}/
 
+# data files
+install -Dm 0644 FILE-EXTRA/%{name}-*-* -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0644 FILE-EXTRA/license -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0644 FILE-EXTRA/COPYING -t %{buildroot}/%{_datadir}/%{name}/
+#install -Dm 0644 ICONS-EXTRA/*.png -t %{buildroot}/%{_datadir}/%{name}/
+
 #.desktop used by dnfdrake
 install -Dm 0755 FILE-EXTRA/%{name}.desktop -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0755 FILE-EXTRA/%{name}.desktop -t %{buildroot}/%{_datadir}/applications/
+
+# icons
+install -Dm 0644 %{name}.svg -t %{buildroot}%{_iconsdir}/hicolor/scalable/apps/
+for d in 16 32 48 64 72 128 256 512
+do
+	install -dm 0755 %{buildroot}%{_iconsdir}/hicolor/${d}x${d}/apps/
+	convert -background none -scale ${d}x${d} %{name}.svg \
+			%{buildroot}%{_iconsdir}/hicolor/${d}x${d}/apps/%{name}.png
+done
+install -dm 0755 %{buildroot}%{_datadir}/pixmaps/
+convert -scale 32x32 %{name}.svg %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
 
