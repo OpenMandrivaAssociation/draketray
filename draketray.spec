@@ -74,7 +74,7 @@ install -Dm 0755 %{name}.gambas -t %{buildroot}/%{_bindir}/
 install -Dm 0644 FILE-EXTRA/%{name}-*-* -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0644 FILE-EXTRA/license -t %{buildroot}/%{_datadir}/%{name}/
 install -Dm 0644 FILE-EXTRA/COPYING -t %{buildroot}/%{_datadir}/%{name}/
-#install -Dm 0644 ICONS-EXTRA/*.png -t %{buildroot}/%{_datadir}/%{name}/
+install -Dm 0644 ICONS-EXTRA/*.png -t %{buildroot}/%{_datadir}/%{name}/
 
 #.desktop used by dnfdrake
 install -Dm 0755 FILE-EXTRA/%{name}.desktop -t %{buildroot}/%{_datadir}/%{name}/
