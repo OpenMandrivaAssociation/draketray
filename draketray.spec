@@ -1,4 +1,6 @@
-%global gb_ver %(rpm -q --qf '%%{version}' gambas-devel)
+%define gb_ver %(if rpm -q gambas-devel &>/dev/null; then rpm -q --qf '%%{version}' gambas-devel; else echo -n 3.19; fi)
+%define gb_major %(echo %{gb_ver} |cut -d. -f1-2)
+%define gb_next_major %(echo -n $(echo %{gb_major} |cut -d. -f1).; GB_MINOR=$(echo %{gb_ver}|cut -d. -f2); echo -n $((GB_MINOR+1)))
 
 Summary:	Icon tray for DnfDrake and FlatDrake
 Name:		draketray
@@ -22,13 +24,13 @@ BuildRequires:	imagemagick
 Requires:	sudo
 Requires:	createrepo_c
 Requires:	dnf-utils
-Requires:	gambas-runtime = %{gb_ver}
-Requires:	gambas-gb.dbus = %{gb_ver}
-Requires:	gambas-gb.form = %{gb_ver}
-Requires:	gambas-gb.form.stock = %{gb_ver}
-Requires:	gambas-gb.gui = %{gb_ver}
-Requires:	gambas-gb.image = %{gb_ver}
-Requires:	gambas-gui-backend = %{gb_ver}
+Requires:	(gambas-runtime >= %{gb_major} with gambas-runtime < %{gb_next_major})
+Requires:	(gambas-gb.dbus >= %{gb_major} with gambas-gb.dbus < %{gb_next_major})
+Requires:	(gambas-gb.form >= %{gb_major} with gambas-gb.form < %{gb_next_major})
+Requires:	(gambas-gb.form.stock >= %{gb_major} with gambas-gb.form.stock < %{gb_next_major})
+Requires:	(gambas-gb.gui >= %{gb_major} with gambas-gb.gui < %{gb_next_major})
+Requires:	(gambas-gb.image >= %{gb_major} with gambas-gb.image < %{gb_next_major})
+Requires:	(gambas-gui-backend >= %{gb_major} with gambas-gui-backend < %{gb_next_major})
 Requires:	lsb-release
 Requires:	python-dnf-plugin-versionlock
 Requires:	xrandr
