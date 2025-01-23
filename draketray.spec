@@ -17,6 +17,7 @@ BuildRequires:	gambas-gb.dbus
 BuildRequires:	gambas-gb.form
 BuildRequires:	gambas-gb.form.stock
 BuildRequires:	gambas-gb.gui
+BuildRequires:  gambas-gb.qt6
 BuildRequires:	gambas-gb.image
 BuildRequires:	gambas-gui-backend
 BuildRequires:	imagemagick
@@ -29,6 +30,7 @@ Requires:	(gambas-gb.dbus >= %{gb_major} with gambas-gb.dbus < %{gb_next_major})
 Requires:	(gambas-gb.form >= %{gb_major} with gambas-gb.form < %{gb_next_major})
 Requires:	(gambas-gb.form.stock >= %{gb_major} with gambas-gb.form.stock < %{gb_next_major})
 Requires:	(gambas-gb.gui >= %{gb_major} with gambas-gb.gui < %{gb_next_major})
+Requires:	(gambas-gb.qt6 >= %{gb_major} with gambas-gb.qt6 < %{gb_next_major})
 Requires:	(gambas-gb.image >= %{gb_major} with gambas-gb.image < %{gb_next_major})
 Requires:	(gambas-gui-backend >= %{gb_major} with gambas-gui-backend < %{gb_next_major})
 Requires:	lsb-release
@@ -40,7 +42,10 @@ Suggests:	flatdrake
 
 BuildArch: noarch
 
-%rename dnfdraketray
+%patchlist
+draketray-qt6.patch
+
+#%%rename dnfdraketray
 #Obsoletes:	dnfdraketray < %{version}
 
 %description

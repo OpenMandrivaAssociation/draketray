@@ -1,0 +1,12 @@
+diff -up draketray-3.7.1/.project.omv draketray-3.7.1/.project
+--- draketray-3.7.1/.project.omv	2025-01-23 16:17:56.726412191 -0500
++++ draketray-3.7.1/.project	2025-01-23 16:18:16.719907121 -0500
+@@ -4,7 +4,7 @@ Startup=FMain
+ Icon=draketray.svg
+ Version=3.7.1
+ Component=gb.image
+-Component=gb.qt5
++Component=gb.qt6
+ Component=gb.form
+ Component=gb.dbus
+ Component=gb.gui.trayicon
