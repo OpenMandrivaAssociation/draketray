@@ -5,7 +5,7 @@
 Summary:	Icon tray for DnfDrake and FlatDrake
 Name:		draketray
 Version:	3.7.2
-Release:	2
+Release:	3
 License:	GPLv3
 Group:		Graphical desktop/KDE
 URL:		https://mib.pianetalinux.org
@@ -60,6 +60,7 @@ Icon tray for dnfdrake.
 
 %prep
 %autosetup -p1
+sed -i -e 's,gb.qt5,gb.qt6,g' .project
 
 %build
 gbc3 -e -a -g -t -f public-module -f public-control -j%{?_smp_mflags}
