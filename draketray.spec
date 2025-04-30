@@ -4,7 +4,7 @@
 
 Summary:	Icon tray for DnfDrake and FlatDrake
 Name:		draketray
-Version:	3.9.0
+Version:	3.9.5
 Release:	1
 License:	GPLv3
 Group:		Graphical desktop/KDE
